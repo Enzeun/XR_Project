@@ -613,23 +613,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1404948992952643906, guid: 110db4a9b7b684641b667d141b6eb9a2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.59
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1404948992952643906, guid: 110db4a9b7b684641b667d141b6eb9a2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.59
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1404948992952643906, guid: 110db4a9b7b684641b667d141b6eb9a2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.59
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1404948992952643906, guid: 110db4a9b7b684641b667d141b6eb9a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 1404948992952643906, guid: 110db4a9b7b684641b667d141b6eb9a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.981
+      value: -1.31
       objectReference: {fileID: 0}
     - target: {fileID: 1404948992952643906, guid: 110db4a9b7b684641b667d141b6eb9a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2302,7 +2302,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4596,7 +4596,7 @@ PrefabInstance:
     - target: {fileID: 7167869852133151644, guid: ee4c4a6d32fb0e64fb7cc4ac42d21738, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1843495471}
     - target: {fileID: 7167869852133151644, guid: ee4c4a6d32fb0e64fb7cc4ac42d21738, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -4619,7 +4619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7167869852133151644, guid: ee4c4a6d32fb0e64fb7cc4ac42d21738, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartAI
+      value: DOPlayForward
       objectReference: {fileID: 0}
     - target: {fileID: 7167869852133151644, guid: ee4c4a6d32fb0e64fb7cc4ac42d21738, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -4631,7 +4631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7167869852133151644, guid: ee4c4a6d32fb0e64fb7cc4ac42d21738, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChasePlayer, Assembly-CSharp
+      value: DG.Tweening.DOTweenAnimation, Assembly-CSharp-firstpass
       objectReference: {fileID: 0}
     - target: {fileID: 7167869852133151644, guid: ee4c4a6d32fb0e64fb7cc4ac42d21738, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -11966,7 +11966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2089729814
 Transform:
   m_ObjectHideFlags: 0
@@ -11996,7 +11996,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 05167c3833206e741ae00d997ec41d93, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.746
   m_Pitch: 1
   Loop: 0
   Mute: 0

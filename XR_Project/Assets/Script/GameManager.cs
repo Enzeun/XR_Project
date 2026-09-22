@@ -14,19 +14,17 @@ public class GameManager : MonoBehaviour
 
     public GameObject JumpScare;
 
-    private GameManager()
+
+    private void Awake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
         Instance = this;
-    }
 
-    private void Awake()
-    {
         ceiling.SetActive(true);
     }
 
