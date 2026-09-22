@@ -49,14 +49,15 @@ public class ChasePlayer : MonoBehaviour
             }
         }
 
-        animator.speed = 0f; // AI 시작 시 애니메이션 속도를 0으로 설정
-
+        StopAI();
         //StartAI();
     }
 
     public void StartAI()
     {
         Debug.Log($"{gameObject.name} AI 시작");
+
+        animator.speed = animSpeed; // AI 시작 시 애니메이션 속도를 원래대로 설정
 
         if (aiCoroutine == null)
         {
@@ -66,6 +67,8 @@ public class ChasePlayer : MonoBehaviour
 
     public void StopAI()
     {
+        animator.speed = 0f; // AI를 중지할 때 애니메이션 속도를 0으로 설정
+
         if (aiCoroutine != null)
         {
             StopCoroutine(aiCoroutine);
@@ -80,7 +83,6 @@ public class ChasePlayer : MonoBehaviour
 
     private IEnumerator CoAILoop()
     {
-
         WaitForSeconds wait = new WaitForSeconds(updateInterval);
 
         while (true)
@@ -88,11 +90,10 @@ public class ChasePlayer : MonoBehaviour
             if (isLocked)
             {
                 animator.speed = 0f; // AI가 잠금 상태이면 애니메이션 속도를 0으로 설정
-                //StopAI(); // AI가 잠금 상태이면 AI 동작을 중지
-                //yield break; // AI가 잠금 상태이면 코루틴 종료
+
                 currentState = AIState.Locked; // 상태를 Locked로 설정
 
-                agent.ResetPath();
+                agent.isStopped = true; // NavMeshAgent 이동 중지
             }
 
             else
@@ -110,12 +111,25 @@ public class ChasePlayer : MonoBehaviour
                     if (targetPlayer != null)
                     {
                         distanceToPlayer = Vector3.Distance(transform.position, targetPlayer.position);
+                        if (distanceToPlayer <= stopDistance)
+                        {
+                            agent.isStopped = true; // 플레이어와의 거리가 stoppingDistance 이하이면 이동을 멈춤
+
+                            GameManager.Instance.OnPlayerCaught(); // 플레이어를 잡았을 때 처리
+                        }
+                        else
+                        {
+                            agent.isStopped = false; // 플레이어와의 거리가 stoppingDistance 이상이면 이동을 계속함
+                        }
                     }
 
-
-
                     // 2. 상태 전환 판단
-                    if (distanceToPlayer <= detectionRange)
+                    if (isLocked)
+                    {
+                        currentState = AIState.Locked;
+                    }
+
+                    else if (distanceToPlayer <= detectionRange)
                     {
                         currentState = AIState.Chase;
                     }
@@ -138,6 +152,7 @@ public class ChasePlayer : MonoBehaviour
 
                         case AIState.Locked:
                             agent.ResetPath(); // 잠금 상태에서는 이동을 멈춤
+                            agent.isStopped = true; // NavMeshAgent 이동 중지
                             break;
                     }
                 }
@@ -151,6 +166,7 @@ public class ChasePlayer : MonoBehaviour
     {
         // 추적 시에는 stoppingDistance 적용
         agent.stoppingDistance = stopDistance;
+
         agent.SetDestination(targetPlayer.position);
     }
 
